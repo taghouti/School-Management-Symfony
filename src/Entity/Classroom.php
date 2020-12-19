@@ -27,9 +27,6 @@ class Classroom
     /**
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="classroom", cascade={"all"}, orphanRemoval=true)
      */
-    //cascade :si je supprime la classe les student sont supp
-    // orphanremoval : une class peut ne pas contenir d etudiants
-    // on a mis ca pour le student en creant l entite via les questions  
     private $students;
 
     public function __construct()
@@ -74,11 +71,9 @@ class Classroom
 
     public function removeStudent(Student $student): self
     {
-        if ($this->students->removeElement($student)) {
-            // set the owning side to null (unless already changed)
-            if ($student->getClassroom() === $this) {
-                $student->setClassroom(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->students->removeElement($student) && $student->getClassroom() === $this) {
+            $student->setClassroom(null);
         }
 
         return $this;

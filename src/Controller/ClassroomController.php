@@ -16,7 +16,7 @@ class ClassroomController extends AbstractController
     /**
      * @param ClassroomRepository $repository
      * @return Response
-     * @Route("/classroom/", name="index")
+     * @Route("/classroom/", name="classroom-index")
      */
     public function index(ClassroomRepository $repository): Response
     {
@@ -31,7 +31,7 @@ class ClassroomController extends AbstractController
      * @param int $id
      * @param ClassroomRepository $repository
      * @return Response
-     * @Route("/classroom/show/{id}", name="show")
+     * @Route("/classroom/show/{id}", name="classroom-show")
      */
     public function show(int $id, ClassroomRepository $repository): Response
     {
@@ -43,7 +43,7 @@ class ClassroomController extends AbstractController
     }
 
     /**
-     * @Route("/classroom/delete/{id}", name="delete")
+     * @Route("/classroom/delete/{id}", name="classroom-delete")
      * @param int $id
      * @param ClassroomRepository $classroomRepository
      * @return Response
@@ -54,11 +54,11 @@ class ClassroomController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($classroom);
         $em->flush();
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('classroom-index');
     }
 
     /**
-     * @Route("/classroom/add", name="add")
+     * @Route("/classroom/add", name="classroom-add")
      * @param Request $request
      * @return Response
      */
@@ -72,7 +72,7 @@ class ClassroomController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($classroom);
             $em->flush();
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('classroom-index');
         }
         return $this->render('classroom/add.html.twig', [
             'form' => $form->createView()
@@ -80,7 +80,7 @@ class ClassroomController extends AbstractController
     }
 
     /**
-     * @Route("/classroom/update/{id}", name="update")
+     * @Route("/classroom/update/{id}", name="classroom-update")
      * @param int $id
      * @param Request $request
      * @return Response
@@ -93,7 +93,7 @@ class ClassroomController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('classroom-index');
 
         }
         return $this->render('classroom/update.html.twig', ['form' => $form->createView()]);

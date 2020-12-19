@@ -11,20 +11,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ClassroomType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
-                'label'=>'nom de la classroom:',
-                'attr'=>[
-                    'class'=>'title'
+                'label' => 'Name:',
+                'attr' => [
+                    'class' => 'title'
                 ]
-            ]) 
-            ->add('modifier', SubmitType::class)
-        ;
+            ])->add('modifier', SubmitType::class);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Classroom::class,

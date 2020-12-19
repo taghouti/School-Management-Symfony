@@ -1,14 +1,16 @@
-<table>
+<table border="1" cellpadding="5">
+    <tr>
+        <td colspan="4" style="text-align: center"><a href="{{ path('classroom-add', {'id':classroom.id} ) }}">Add</a></td>
+    </tr>
     <tr>
         <td> id</td>
-        <td> name</td>
-        <td> update</td>
-        <td> delete</td>
+        <td> Name</td>
+        <td colspan="2"> Actions </td>
     </tr>
     <tr>
         <td> {{ classroom.id }} </td>
         <td> {{ classroom.name }} </td>
-        <td><a href="{{ path('update', {'id':classroom.id} ) }}">update</a></td>
-        <td><a href="{{ path('delete', {'id':classroom.id} ) }}">delete</a></td>
+        <td><a href="{{ path('classroom-update', {'id':classroom.id} ) }}">Update</a></td>
+        <td><a href="{{ path('classroom-delete', {'id':classroom.id} ) }}">Delete</a></td>
     </tr>
 </table>
