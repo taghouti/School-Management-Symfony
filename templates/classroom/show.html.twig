@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <td> id</td>
+        <td> name</td>
+        <td> update</td>
+        <td> delete</td>
+    </tr>
+    <tr>
+        <td> {{ classroom.id }} </td>
+        <td> {{ classroom.name }} </td>
+        <td><a href="{{ path('update', {'id':classroom.id} ) }}">update</a></td>
+        <td><a href="{{ path('delete', {'id':classroom.id} ) }}">delete</a></td>
+    </tr>
+</table>
