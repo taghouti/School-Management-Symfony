@@ -1,0 +1,50 @@
+<h2> le nb de formations est : {{ formations | length}} </h2>
+
+{% set maxvalue=0 %}
+{% for f in formations %}
+{% if (f.nb_participants > maxvalue) %}
+{% set maxvalue=f.nb_participants %}
+{% endif %}
+{% endfor %}
+
+{% set total=0 %}
+{% for f in formations %}
+{% set total=total+f.nb_participants %}
+{% endfor %}
+<h2> le nb de Participants est : {{ total }} </h2>
+
+<table border >
+<tr>
+<td>Reference</td>
+<td>Titre</td>
+<td>Description</td>
+<td>Date Début</td>
+<td>Date Fin</td>
+<td>Nb. Participants</td>
+</tr>
+
+{%  for f in formations %}   {# une action en twig #}
+{# % if "theorique" in f.Description %}   #}
+{# % if f.nb_participants == maxvalue %}  #}
+<tr> 
+<td>{{f.ref}}</td>
+<td>{{f.Titre | upper()}}</td>
+<td>{{f.Description}}</td>
+<td>{{f.date_debut}}</td>
+<td>{{f.date_fin}}</td>
+<td>{{f.nb_participants}}</td>
+
+<td> 
+{#% if f.nb_participants == 0 % #}
+<form method="post" action="{{  path('details',{'ref':f.ref})   }}">
+{# path = details c est le nom de la fonction detail dans le controller !!!!!!!!! #}
+   <input type="submit" value="participer" >
+</form>
+{# % endif % #}
+</td>
+</tr>
+
+{% else  %}
+<h1> le tableau est vide <h1>
+{% endfor %} 
+</table>

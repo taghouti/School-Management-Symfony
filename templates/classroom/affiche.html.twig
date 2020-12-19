@@ -1,0 +1,23 @@
+<table>
+<tr>
+<td> id </td>
+<td> name </td>
+<td> modifier </td>
+<td> supprimer</td>
+</tr>
+
+{% for c in classroom %}
+<tr>
+<td> {{ c.id}} </td>
+<td> {{c.name}} </td>
+<td> <a href ="{{path('modif', {'id':c.id} )}}" >modifier</a> </td>
+<td> <a href ="{{path('delete', {'id':c.id} )}}" >supprimer</a> </td> 
+</tr>
+
+
+{% endfor %}
+
+
+
+
+</table>
